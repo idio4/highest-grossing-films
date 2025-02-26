@@ -3,30 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Films List</title>
+    <title>Films Collection</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Films</h1>
-    <ul id="films-list"></ul>
-
-    <script>
-        async function loadFilms() {
-            try {
-                const response = await fetch("data/films_data.json"); 
-                const films = await response.json();
-
-                const filmsList = document.getElementById("films-list");
-                films.forEach(film => {
-                    const listItem = document.createElement("li");
-                    listItem.textContent = `${film.title} (${film.release_year}) - Directed by ${film.director}`;
-                    filmsList.appendChild(listItem);
-                });
-            } catch (error) {
-                console.error("Error loading films:", error);
-            }
-        }
-
-        loadFilms();
-    </script>
+    <h1>Films Collection</h1>
+    <div class="controls">
+        <input type="text" id="search" placeholder="Search by title...">
+        <select id="sort">
+            <option value="title">Sort by Title</option>
+            <option value="release_year">Sort by Release Year</option>
+            <option value="box_office">Sort by Box Office</option>
+        </select>
+    </div>
+    <div class="film-container" id="film-list"></div>
+    <script src="script.js"></script>
 </body>
 </html>
